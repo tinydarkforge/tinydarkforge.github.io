@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TinyDarkForge</title>
+  <meta name="description" content="TinyDarkForge builds sharp tools for developers and design systems for brands.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2318181b'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' font-family='Inter,sans-serif' font-weight='700' fill='%2310b981'%3ET%3C/text%3E%3C/svg%3E">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #09090b;
+      --bg-secondary: #18181b;
+      --bg-tertiary: #27272a;
+      --bg-hover: #3f3f46;
+      --border: #27272a;
+      --border-light: #3f3f46;
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #10b981;
+      --accent-hover: #34d399;
+      --accent-subtle: rgba(16, 185, 129, 0.1);
+      --accent-ring: rgba(16, 185, 129, 0.3);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius: 8px;
+      --transition: 200ms ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--accent-subtle);
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── Nav ─── */
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+
+    .logo-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    /* ─── Hero ─── */
+
+    .hero {
+      margin-bottom: 120px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      max-width: 680px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-secondary);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-light);
+      color: var(--text-primary);
+    }
+
+    /* ─── Section header ─── */
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+    }
+
+    /* ─── Projects ─── */
+
+    .projects {
+      margin-bottom: 120px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: border-color var(--transition);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-light);
+    }
+
+    .project-card .tag {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .project-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .project-card .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-card .meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .project-card .project-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition);
+    }
+
+    .project-card .project-link:hover {
+      color: var(--accent-hover);
+    }
+
+    .project-card .project-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ─── Ethos ─── */
+
+    .ethos {
+      margin-bottom: 120px;
+    }
+
+    .ethos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .ethos-item {
+      padding: 24px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .ethos-item .index {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+    }
+
+    .ethos-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .ethos-item p {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── Contact Form ─── */
+
+    .contact {
+      margin-bottom: 120px;
+    }
+
+    .contact-form {
+      max-width: 520px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .form-status {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .form-status.success {
+      color: var(--accent);
+    }
+
+    .form-status.error {
+      color: #ef4444;
+    }
+
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+    }
+
+    /* ─── Footer ─── */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-inner p {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-secondary);
+    }
+
+    /* ─── Responsive ─── */
+
+    @media (max-width: 768px) {
+      nav { margin-bottom: 48px; }
+
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .hero { margin-bottom: 80px; }
+
+      .projects-grid { grid-template-columns: 1fr; }
+      .ethos-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.75rem; }
+      .hero-actions { flex-direction: column; }
+
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.8125rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="/" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zM12 4.5L18.5 8 12 11.5 5.5 8 12 4.5zM4.5 11.5l6.5 3.25v6L4.5 17.5v-6zm15 0v6l-6.5 3.25v-6l6.5-3.25z"/></svg>
+        TinyDarkForge
+      </a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#ethos">Ethos</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <h1>Builds <em>sharp tools</em> and <em>design systems</em> for the digital forge.</h1>
+      <p>TinyDarkForge is a small team behind Engram — a local-first memory ledger for AI agents — and Luxbase, a web development studio for growing brands. Everything we make is local-first, privacy-respecting, and built to last.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View projects</a>
+        <a href="#contact" class="btn btn-secondary">Get in touch</a>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="section-header">
+        <h2>Projects</h2>
+        <p>What we're building.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="tag">Developer Tool</div>
+          <h3>Engram</h3>
+          <p>Local-first memory and assertion ledger for AI coding agents. Persists engineering context across every repo, ranks facts by confidence, surfaces contradictions, and feeds the whole thing to Claude Code over MCP. No cloud. No telemetry.</p>
+          <div class="meta-row">
+            <span class="meta">MCP · Semantic search · Confidence ranking</span>
+            <a href="https://github.com/tinydarkforge/Engram" class="project-link" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="tag">Web Development</div>
+          <h3>Luxbase</h3>
+          <p>Web development studio that builds sharp digital foundations — responsive sites, branding, support, and ongoing technical care for teams that need their online presence to work cleanly from day one.</p>
+          <div class="meta-row">
+            <span class="meta">Design · Development · Support</span>
+            <a href="https://luxbase.github.io" class="project-link" target="_blank" rel="noopener">
+              Visit site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ethos" id="ethos">
+      <div class="section-header">
+        <h2>How we work</h2>
+        <p>Principles that guide everything we build.</p>
+      </div>
+      <div class="ethos-grid">
+        <div class="ethos-item">
+          <div class="index">01</div>
+          <h4>Local-first by default</h4>
+          <p>Your data stays on your machine. No cloud dependency, no telemetry, no vendor lock-in. If it doesn't work offline, it's not done.</p>
+        </div>
+        <div class="ethos-item">
+          <div class="index">02</div>
+          <h4>Ship what lasts</h4>
+          <p>We build for maintainability over novelty. Clear scope, careful build, steady follow-through. No frameworks for the sake of frameworks.</p>
+        </div>
+        <div class="ethos-item">
+          <div class="index">03</div>
+          <h4>Privacy is the default</h4>
+          <p>Every product we ship is auditable, self-contained, and respects the user's autonomy. If we can't see your data, we can't leak it.</p>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contact">
+      <div class="section-header">
+        <h2>Get in touch</h2>
+        <p>Questions, project ideas, or just saying hello.</p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <input type="hidden" name="access_key" value="">
+        <input type="hidden" name="subject" value="TinyDarkForge contact form">
+        <div class="hp-field">
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="What are you building?" required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <span class="form-status" id="form-status"></span>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p>&copy; TinyDarkForge</p>
+        <div class="footer-links">
+          <a href="https://github.com/tinydarkforge" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:hello@tinydarkforge.com">Email</a>
+          <a href="https://luxbase.github.io" target="_blank" rel="noopener">Luxbase</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var statusEl = document.getElementById('form-status');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        statusEl.textContent = 'Sending...';
+        statusEl.className = 'form-status';
+
+        var data = new FormData(form);
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data,
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (json) {
+            if (json.success) {
+              statusEl.textContent = 'Message sent. We\'ll be in touch.';
+              statusEl.className = 'form-status success';
+              form.reset();
+            } else {
+              statusEl.textContent = json.message || 'Failed to send. Try again later.';
+              statusEl.className = 'form-status error';
+            }
+          })
+          .catch(function () {
+            statusEl.textContent = 'Network error. Check your connection.';
+            statusEl.className = 'form-status error';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
